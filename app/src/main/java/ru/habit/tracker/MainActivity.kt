@@ -3,7 +3,9 @@ package ru.habit.tracker
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import ru.habit.tracker.ui.screens.ConfirmationsScreen
 import ru.habit.tracker.ui.screens.LoginScreen
+import ru.habit.tracker.ui.screens.MainContainerScreen
 import ru.habit.tracker.ui.theme.HabitTrackerTheme
 
 class MainActivity : ComponentActivity() {
@@ -12,7 +14,7 @@ class MainActivity : ComponentActivity() {
         setContent {
 //            HabitTrackerTheme {
                 // A surface container using the 'background' color from the theme
-                LoginScreen()
+            MainContainerScreen()
 //            }
         }
     }

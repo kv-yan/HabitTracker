@@ -43,7 +43,7 @@ fun ActionBarTitleWithBoBackBtn(titleText: String) {
                 fontSize = 24.sp, fontWeight = FontWeight.Medium
             ),
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
                 .padding(start = 21.dp, top = 9.dp)
         )
     }

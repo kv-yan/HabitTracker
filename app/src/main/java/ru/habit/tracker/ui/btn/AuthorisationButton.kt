@@ -3,7 +3,6 @@ package ru.habit.tracker.ui.btn
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.requiredHeight
-import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -23,10 +22,12 @@ fun AuthorisationButton(
     modifier: Modifier = Modifier,
     btnText: String,
     btnColor: Color,
+    isEnable: Boolean = true,
     onClick: () -> Unit = {},
 ) {
     Button(
         onClick = { onClick.invoke() },
+        enabled = isEnable,
         shape = RoundedCornerShape(16.dp),
         colors = ButtonDefaults.buttonColors(containerColor = btnColor),
         modifier = modifier.requiredHeight(height = 52.dp)
@@ -35,9 +36,8 @@ fun AuthorisationButton(
             horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .requiredWidth(width = 240.dp)
-                .requiredHeight(height = 52.dp)
         ) {
+
             Text(
                 text = btnText,
                 color = Color.White,
@@ -45,7 +45,8 @@ fun AuthorisationButton(
                 lineHeight = 1.57.em,
                 style = TextStyle(
                     fontSize = 14.sp, letterSpacing = 0.5.sp
-                )
+                ),
+                modifier = modifier
             )
         }
     }
