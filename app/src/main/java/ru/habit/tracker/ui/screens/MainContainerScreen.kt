@@ -23,7 +23,6 @@ fun MainContainerScreen() {
     Scaffold(bottomBar = {
         BottomActionBar()
     }) {
-
         it
     }
 }
