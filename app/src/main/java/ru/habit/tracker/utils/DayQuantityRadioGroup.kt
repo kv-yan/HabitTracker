@@ -21,13 +21,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun CustomRadioGroup() {
+fun DayQuantityRadioGroup() {
     val options = listOf(
         "21 день",
         "30 дней",
@@ -43,27 +42,22 @@ fun CustomRadioGroup() {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
     ) {
         options.forEach { text ->
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally),
+            Row(horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally),
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .clip(shape = RoundedCornerShape(10.dp))
                     .background(color = if (selectedOption == text) Color(0xffd7ebe9) else Color.White)
                     .border(
                         border = BorderStroke(
-                            1.dp,
-                            if (selectedOption == text) Color(0xff89ccc5) else Color.White
-                        ),
-                        shape = RoundedCornerShape(10.dp)
+                            1.dp, if (selectedOption == text) Color(0xff89ccc5) else Color.White
+                        ), shape = RoundedCornerShape(10.dp)
                     )
                     .clickable {
                         onSelectionChange(text)
-                    }
-            ) {
+                    }) {
                 Text(
                     text = text,
                     color = Color.Black,
@@ -71,17 +65,12 @@ fun CustomRadioGroup() {
                     lineHeight = 1.57.em,
                     style = TextStyle(
                         fontSize = 14.sp
-                    ), modifier = Modifier.padding(
+                    ),
+                    modifier = Modifier.padding(
                         horizontal = 24.dp, vertical = 6.dp
                     )
                 )
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun TextStyle() {
-    CustomRadioGroup()
 }
