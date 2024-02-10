@@ -1,6 +1,5 @@
 package ru.habit.tracker.ui.screens
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,6 +13,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import ru.habit.tracker.Screens
 import ru.habit.tracker.ui.btn.AuthorisationButton
 import ru.habit.tracker.ui.text.ActionBarTitle
 import ru.habit.tracker.ui.text.PasswordTextFields
@@ -22,9 +22,6 @@ import ru.habit.tracker.ui.theme.actionBarTitleColor
 
 @Composable
 fun ChangePasswordScreen(mainNavController: NavHostController) {
-    BackHandler {
-
-    }
 
     Surface(Modifier.padding(horizontal = 16.dp)) {
         Column {
@@ -38,7 +35,7 @@ fun ChangePasswordScreen(mainNavController: NavHostController) {
             Spacer(modifier = Modifier.height(12.dp))
 
             PasswordInfoText(modifier = Modifier.fillMaxWidth())
-            Spacer(modifier = Modifier.height(300.dp))
+            Spacer(modifier = Modifier.height(200.dp))
 
             AuthorisationButton(
                 btnText = "Создать пароль".uppercase(),
@@ -47,7 +44,7 @@ fun ChangePasswordScreen(mainNavController: NavHostController) {
                     .fillMaxWidth()
                     .padding(horizontal = 40.dp)
             ) {
-//                mainNavController.navigate(Screens..route) // TODO: create cong screen
+                mainNavController.navigate(Screens.CONGRATULATIONS_SCREEN.route)
             }
 
         }
@@ -57,7 +54,7 @@ fun ChangePasswordScreen(mainNavController: NavHostController) {
 
 
 @Composable
-fun PasswordInfoText(modifier: Modifier = Modifier) {
+private fun PasswordInfoText(modifier: Modifier = Modifier) {
     Text(
         text = "Пароль должен содержать от 8 до 32 символов, из них минимум одна цифра и одна буква. Допускаются только латинские буквы.",
         color = actionBarTitleColor,

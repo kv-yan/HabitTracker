@@ -10,7 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import ru.habit.tracker.ui.BottomActionBar
-import ru.habit.tracker.ui.MenuScreens
+import ru.habit.tracker.MenuScreens
 import ru.habit.tracker.ui.screens.menu.AddNewHabitScreen
 import ru.habit.tracker.ui.screens.menu.CalendarScreen
 import ru.habit.tracker.ui.screens.menu.HomeScreen

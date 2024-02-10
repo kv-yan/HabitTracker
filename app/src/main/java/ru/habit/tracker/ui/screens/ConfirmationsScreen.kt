@@ -30,7 +30,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import ru.habit.tracker.ui.Screens
+import ru.habit.tracker.Screens
 import ru.habit.tracker.ui.btn.AuthorisationButton
 import ru.habit.tracker.ui.text.ActionBarTitleWithBoBackBtn
 import ru.habit.tracker.ui.text.InfoAboutCodeMessage

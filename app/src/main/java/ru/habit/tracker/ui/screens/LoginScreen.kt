@@ -1,5 +1,6 @@
 package ru.habit.tracker.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -17,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import ru.habit.tracker.ui.Screens
+import ru.habit.tracker.Screens
 import ru.habit.tracker.ui.btn.AuthorisationButton
 import ru.habit.tracker.ui.btn.ButtonRegistration
 import ru.habit.tracker.ui.text.ActionBarTitle
@@ -30,7 +31,9 @@ fun LoginScreen(mainNavController: NavHostController) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(scrollState), color = Color(0xFFF8F8F8)
+            .background(Color.Green)
+            .verticalScroll(scrollState),
+        color = Color(0xFFF8F8F8)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -52,7 +55,7 @@ fun LoginScreen(mainNavController: NavHostController) {
                 mainNavController.navigate(Screens.RECOVERY.route)
             })
 
-            Spacer(modifier = Modifier.height(307.dp))
+            Spacer(modifier = Modifier.height(200.dp))
             AuthorisationButton(modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 44.dp),
@@ -63,13 +66,13 @@ fun LoginScreen(mainNavController: NavHostController) {
                 })
 
             Spacer(modifier = Modifier.height(12.dp))
-            ButtonRegistration(
-                text = "РЕГИСТРАЦИЯ", modifier = Modifier
+            ButtonRegistration(text = "РЕГИСТРАЦИЯ",
+                modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 44.dp), onClick = {
+                    .padding(horizontal = 44.dp),
+                onClick = {
                     mainNavController.navigate(Screens.REGISTRATION.route)
-                }
-            )
+                })
         }
     }
 }

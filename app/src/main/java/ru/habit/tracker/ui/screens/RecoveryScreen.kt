@@ -16,7 +16,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import ru.habit.tracker.ui.Screens
+import ru.habit.tracker.Screens
 import ru.habit.tracker.ui.btn.AuthorisationButton
 import ru.habit.tracker.ui.text.ActionBarTitleWithBoBackBtn
 import ru.habit.tracker.ui.text.LoginTextFields
@@ -50,12 +50,10 @@ fun RecoveryScreen(mainNavController: NavHostController) {
 
 
 
-
-
             Spacer(modifier = Modifier.height(44.dp))
             LoginTextFields("Электронная почта или телефон")
 
-            Spacer(modifier = Modifier.height(300.dp))
+            Spacer(modifier = Modifier.height(230.dp))
 
 
             AuthorisationButton(

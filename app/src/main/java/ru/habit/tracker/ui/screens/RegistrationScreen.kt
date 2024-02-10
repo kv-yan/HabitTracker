@@ -14,7 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import ru.habit.tracker.ui.Screens
+import ru.habit.tracker.Screens
 import ru.habit.tracker.ui.btn.AuthorisationButton
 import ru.habit.tracker.ui.text.ActionBarTitleWithBoBackBtn
 import ru.habit.tracker.ui.text.LoginTextFields
@@ -40,7 +40,7 @@ fun RegistrationScreen(mainNavController: NavHostController) {
                 mainNavController.popBackStack()
             })
 
-            Spacer(modifier = Modifier.height(120.dp))
+            Spacer(modifier = Modifier.height(80.dp))
             LoginTextFields("Имя")
 
             Spacer(modifier = Modifier.height(12.dp))
@@ -52,7 +52,7 @@ fun RegistrationScreen(mainNavController: NavHostController) {
             Spacer(modifier = Modifier.height(12.dp))
             LoginTextFields("Электронная почта")
 
-            Spacer(modifier = Modifier.height(190.dp))
+            Spacer(modifier = Modifier.height(130.dp))
 
             RegistrationHintTxt()
             Spacer(modifier = Modifier.height(16.dp))

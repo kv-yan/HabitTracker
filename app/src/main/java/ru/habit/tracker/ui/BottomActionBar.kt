@@ -1,5 +1,6 @@
 package ru.habit.tracker.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,6 +25,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import ru.habit.tracker.MenuScreens
 import ru.habit.tracker.R
 import ru.habit.tracker.ui.screens.btnActiveColor
 import ru.habit.tracker.ui.theme.actionBarTitleColor
@@ -44,27 +46,31 @@ fun BottomActionBar(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 20.dp), horizontalArrangement = Arrangement . SpaceBetween,
+                    .padding(horizontal = 20.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.Bottom
             ) {
                 IconButton(onClick = { menuNavController.navigate(MenuScreens.HOME_SCREEN.route) }) {
-                    Icon(
+                    Image(
                         painter = painterResource(
                             id = if (DetectIsInCurrentNeededScreen(
                                     navController = menuNavController,
                                     rout = MenuScreens.HOME_SCREEN.route
                                 )
                             ) R.drawable.ic_menu_home_active else R.drawable.ic_menu_home_passive
-                        ), contentDescription = "home", tint = Color(0xff272727)
+                        ), contentDescription = "home"
                     )
-
                 }
 
                 IconButton(onClick = { menuNavController.navigate(MenuScreens.CALENDAR_SCREEN.route) }) {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_menu_calendar_passive),
-                        contentDescription = "calendar",
-                        tint = Color(0xff272727)
+                        painter = painterResource(
+                            id = if (DetectIsInCurrentNeededScreen(
+                                    navController = menuNavController,
+                                    rout = MenuScreens.CALENDAR_SCREEN.route
+                                )
+                            ) R.drawable.ic_menu_calendar_active else R.drawable.ic_menu_calendar_passive
+                        ), contentDescription = "calendar"
                     )
                 }
 
@@ -94,15 +100,27 @@ fun BottomActionBar(
 
                 IconButton(onClick = { menuNavController.navigate(MenuScreens.LUMP_SCREEN.route) }) {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_menu_lamp_passive),
+                        painter = painterResource(
+                            id = if (DetectIsInCurrentNeededScreen(
+                                    navController = menuNavController,
+                                    rout = MenuScreens.LUMP_SCREEN.route
+                                )
+                            ) R.drawable.ic_menu_lamp_active else R.drawable.ic_menu_lamp_passive
+                        ),
                         contentDescription = "lamp"
                     )
                 }
 
 
                 IconButton(onClick = { menuNavController.navigate(MenuScreens.SETTINGS_SCREEN.route) }) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_menu_settings_passive),
+                    Image(
+                        painter = painterResource(
+                            id = if (DetectIsInCurrentNeededScreen(
+                                    navController = menuNavController,
+                                    rout = MenuScreens.SETTINGS_SCREEN.route
+                                )
+                            ) R.drawable.ic_menu_settings_active else R.drawable.ic_menu_settings_passive
+                        ),
                         contentDescription = "settings"
                     )
                 }

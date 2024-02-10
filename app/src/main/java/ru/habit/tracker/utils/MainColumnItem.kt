@@ -1,5 +1,8 @@
+package ru.habit.tracker.utils
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -34,7 +37,14 @@ import ru.habit.tracker.ui.HabitItem
 
 @Composable
 fun MainColumnItem(modifier: Modifier = Modifier, habitItem: HabitItem) {
-    Surface(modifier.padding(end = 16.dp)) {
+    Surface(
+        modifier
+
+            .clip(RoundedCornerShape(16.dp))
+            .clickable {
+                habitItem.isCompleted.value = !habitItem.isCompleted.value
+            }, shape = RoundedCornerShape(16.dp)
+    ) {
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -85,14 +95,15 @@ fun MainColumnItem(modifier: Modifier = Modifier, habitItem: HabitItem) {
             Surface(
                 shape = RoundedCornerShape(16.dp),
                 color = if (habitItem.isCompleted.value) Color(0xffd7ebe9) else Color.White,
-                shadowElevation = 1.dp
+                shadowElevation = 1.dp,
+                modifier = Modifier.padding(end = 16.dp)
             ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(
                         16.dp, Alignment.CenterHorizontally
                     ), verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(
-                            20.dp
-                        )
+                        20.dp
+                    )
 
                 ) {
                     Icon(
@@ -119,37 +130,40 @@ fun BottomNavBar(modifier: Modifier = Modifier) {
             .requiredWidth(width = 360.dp)
             .requiredHeight(height = 47.dp)
             .background(color = Color.White)
-            .padding(horizontal = 20.dp,
-                vertical = 12.dp)
+            .padding(
+                horizontal = 20.dp, vertical = 12.dp
+            )
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .weight(weight = 0.5f)
+            modifier = Modifier.weight(weight = 0.5f)
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_menu_home_active),
                 contentDescription = "home",
-                tint = Color(0xff272727))
+                tint = Color(0xff272727)
+            )
             Icon(
                 painter = painterResource(id = R.drawable.ic_menu_calendar_passive),
                 contentDescription = "calendar",
-                tint = Color(0xff272727))
+                tint = Color(0xff272727)
+            )
         }
         Property1Default()
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .weight(weight = 0.5f)
+            modifier = Modifier.weight(weight = 0.5f)
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_menu_lamp_passive),
-                contentDescription = "lamp")
+                contentDescription = "lamp"
+            )
             Icon(
                 painter = painterResource(id = R.drawable.ic_menu_settings_passive),
-                contentDescription = "settings")
+                contentDescription = "settings"
+            )
         }
     }
 }
@@ -157,21 +171,22 @@ fun BottomNavBar(modifier: Modifier = Modifier) {
 @Composable
 fun Property1Default(modifier: Modifier = Modifier) {
     Box(
-        modifier = modifier
-            .requiredSize(size = 52.dp)
+        modifier = modifier.requiredSize(size = 52.dp)
     ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .clip(shape = CircleShape)
-                .background(color = Color(0xff89ccc5)))
+                .background(color = Color(0xff89ccc5))
+        )
         Icon(
             imageVector = Icons.Default.Add,
             contentDescription = "plus",
             tint = Color.White,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(all = 16.dp))
+                .padding(all = 16.dp)
+        )
     }
 }
 

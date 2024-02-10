@@ -1,6 +1,6 @@
 package ru.habit.tracker.ui.screens.menu
 
-import MainColumnItem
+import ru.habit.tracker.utils.MainColumnItem
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column

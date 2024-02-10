@@ -42,7 +42,6 @@ fun AuthorisationButton(
                 text = btnText,
                 color = Color.White,
                 textAlign = TextAlign.Center,
-                lineHeight = 1.57.em,
                 style = TextStyle(
                     fontSize = 14.sp, letterSpacing = 0.5.sp
                 ),
