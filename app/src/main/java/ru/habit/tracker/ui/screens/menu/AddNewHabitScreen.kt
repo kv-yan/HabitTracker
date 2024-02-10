@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -44,6 +46,7 @@ import java.util.Locale
 
 @Composable
 fun AddNewHabitScreen(mainNavController: NavHostController) {
+    val scrollState = rememberScrollState()
     val weekdaysItems = remember {
         mutableListOf<WeekdaysItem>(
             WeekdaysItem("Пн", mutableStateOf(true)),
@@ -63,7 +66,6 @@ fun AddNewHabitScreen(mainNavController: NavHostController) {
             IconsItem(R.drawable.ic_icon_4, mutableStateOf(false)),
         )
     }
-
     val colorsItem = remember {
         mutableListOf<ColorsItem>(
             ColorsItem(
@@ -94,8 +96,14 @@ fun AddNewHabitScreen(mainNavController: NavHostController) {
         )
     }
 
-    Surface(modifier = Modifier.fillMaxSize(), color = Color(0xFFF8F8F8)) {
-        Column(Modifier.padding(horizontal = 16.dp)) {
+
+    Surface(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(scrollState).padding(bottom = 40.dp),
+        color = Color(0xFFF8F8F8)
+    ) {
+        Column(Modifier.padding(start = 16.dp , end= 16.dp , bottom =  45.dp)) {
             ActionBar()
             Spacer(modifier = Modifier.height(11.dp))
 

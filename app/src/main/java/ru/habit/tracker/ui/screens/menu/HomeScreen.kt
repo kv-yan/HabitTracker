@@ -151,7 +151,7 @@ private fun ScreenHeader() {
                     )
                 )
                 Text(
-                    text = "3",
+                    text = "4",
                     color = Color(0xff272727),
                     textAlign = TextAlign.End,
                     style = TextStyle(
@@ -174,7 +174,7 @@ private fun ScreenHeader() {
                     )
                 )
                 Text(
-                    text = "5",
+                    text = "15",
                     color = Color(0xff272727),
                     textAlign = TextAlign.End,
                     style = TextStyle(

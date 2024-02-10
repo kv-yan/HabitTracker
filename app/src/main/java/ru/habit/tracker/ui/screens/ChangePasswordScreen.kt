@@ -14,7 +14,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import ru.habit.tracker.ui.Screens
 import ru.habit.tracker.ui.btn.AuthorisationButton
 import ru.habit.tracker.ui.text.ActionBarTitle
 import ru.habit.tracker.ui.text.PasswordTextFields
@@ -48,7 +47,7 @@ fun ChangePasswordScreen(mainNavController: NavHostController) {
                     .fillMaxWidth()
                     .padding(horizontal = 40.dp)
             ) {
-                mainNavController.navigate(Screens.MAIN.route)
+//                mainNavController.navigate(Screens..route) // TODO: create cong screen
             }
 
         }

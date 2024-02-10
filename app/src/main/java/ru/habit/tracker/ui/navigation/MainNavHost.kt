@@ -18,11 +18,6 @@ import ru.habit.tracker.ui.screens.LoginScreen
 import ru.habit.tracker.ui.screens.MainContainerScreen
 import ru.habit.tracker.ui.screens.RecoveryScreen
 import ru.habit.tracker.ui.screens.RegistrationScreen
-import ru.habit.tracker.ui.screens.menu.AddNewHabitScreen
-import ru.habit.tracker.ui.screens.menu.CalendarScreen
-import ru.habit.tracker.ui.screens.menu.HomeScreen
-import ru.habit.tracker.ui.screens.menu.LampScreen
-import ru.habit.tracker.ui.screens.menu.SettingsScreen
 
 @Composable
 fun MainNavHost() {
@@ -41,7 +36,7 @@ fun MainNavHost() {
         }
 
 
-    NavHost(navController = mainNavController, startDestination = Screens.LOGIN.route) {
+    NavHost(navController = mainNavController, startDestination = Screens.MAIN.route) {
         composable(Screens.LOGIN.route, enterTransition = enterTransition) {
             LoginScreen(
                 mainNavController

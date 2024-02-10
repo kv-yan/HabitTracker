@@ -203,7 +203,7 @@ fun ConfirmationsScreen(mainNavController: NavHostController) {
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 40.dp)
+                        .padding(horizontal = 16.dp)
                 )
             }
         }

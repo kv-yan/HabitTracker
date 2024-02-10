@@ -1,12 +1,20 @@
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredHeight
+import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -99,4 +107,76 @@ fun MainColumnItem(modifier: Modifier = Modifier, habitItem: HabitItem) {
             }
         }
     }
+}
+
+
+@Composable
+fun BottomNavBar(modifier: Modifier = Modifier) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(40.dp, Alignment.Start),
+        verticalAlignment = Alignment.Bottom,
+        modifier = modifier
+            .requiredWidth(width = 360.dp)
+            .requiredHeight(height = 47.dp)
+            .background(color = Color.White)
+            .padding(horizontal = 20.dp,
+                vertical = 12.dp)
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .weight(weight = 0.5f)
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_menu_home_active),
+                contentDescription = "home",
+                tint = Color(0xff272727))
+            Icon(
+                painter = painterResource(id = R.drawable.ic_menu_calendar_passive),
+                contentDescription = "calendar",
+                tint = Color(0xff272727))
+        }
+        Property1Default()
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .weight(weight = 0.5f)
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_menu_lamp_passive),
+                contentDescription = "lamp")
+            Icon(
+                painter = painterResource(id = R.drawable.ic_menu_settings_passive),
+                contentDescription = "settings")
+        }
+    }
+}
+
+@Composable
+fun Property1Default(modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier
+            .requiredSize(size = 52.dp)
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .clip(shape = CircleShape)
+                .background(color = Color(0xff89ccc5)))
+        Icon(
+            imageVector = Icons.Default.Add,
+            contentDescription = "plus",
+            tint = Color.White,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(all = 16.dp))
+    }
+}
+
+@Preview(widthDp = 360, heightDp = 47)
+@Composable
+private fun BottomNavBarPreview() {
+    BottomNavBar(Modifier)
 }

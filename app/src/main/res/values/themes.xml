@@ -2,8 +2,9 @@
 <resources>
 
     <style name="Theme.HabitTracker" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">#F8F8F8</item>
+        <item name="android:statusBarColor">#B0D9D5</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:background">#F8F8F8</item>
 
     </style>
 </resources>
