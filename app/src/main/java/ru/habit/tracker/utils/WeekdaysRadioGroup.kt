@@ -62,11 +62,6 @@ fun WeekdaysRadioGroup(options: MutableList<WeekdaysItem>) {
     }
 }
 
-@Preview
-@Composable
-fun TextStyle() {
-    DayQuantityRadioGroup()
-}
 
 data class WeekdaysItem(
     var dayName: String,

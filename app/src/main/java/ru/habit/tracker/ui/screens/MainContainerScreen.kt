@@ -9,8 +9,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import ru.habit.tracker.ui.BottomActionBar
 import ru.habit.tracker.MenuScreens
+import ru.habit.tracker.ui.BottomActionBar
 import ru.habit.tracker.ui.screens.menu.AddNewHabitScreen
 import ru.habit.tracker.ui.screens.menu.CalendarScreen
 import ru.habit.tracker.ui.screens.menu.HomeScreen
@@ -37,7 +37,7 @@ fun MainContainerScreen() {
         NavHost(
             modifier = Modifier.fillMaxSize(),
             navController = menuNavController,
-            startDestination = MenuScreens.HOME_SCREEN.route
+            startDestination = MenuScreens.CALENDAR_SCREEN.route
         ) {
             composable(MenuScreens.HOME_SCREEN.route) { HomeScreen() }
             composable(MenuScreens.CALENDAR_SCREEN.route) { (CalendarScreen()) }

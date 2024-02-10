@@ -42,7 +42,7 @@ fun MainNavHost() {
     NavHost(
         modifier = Modifier.fillMaxSize(),
         navController = mainNavController,
-        startDestination = Screens.LOGIN.route
+        startDestination = Screens.MAIN.route
     ) {
         composable(Screens.LOGIN.route, enterTransition = enterTransition) {
             LoginScreen(
