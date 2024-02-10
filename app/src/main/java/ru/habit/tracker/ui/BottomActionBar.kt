@@ -20,14 +20,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import ru.habit.tracker.R
 import ru.habit.tracker.ui.screens.btnActiveColor
 
 @Composable
-fun BottomActionBar() {
+fun BottomActionBar(menuNavController: NavController) {
     Column(
-        Modifier
-            .fillMaxWidth()
+        Modifier.fillMaxWidth()
     ) {
         Row(
             Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
@@ -37,7 +37,7 @@ fun BottomActionBar() {
                 .offset(y = (40).dp),
                 shape = CircleShape,
                 containerColor = btnActiveColor,
-                onClick = { /*TODO*/ }) {
+                onClick = { menuNavController.navigate(MenuScreens.ADD_NEW_HABIT.route) }) {
 
                 Icon(
                     imageVector = Icons.Default.Add,
@@ -54,7 +54,7 @@ fun BottomActionBar() {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Bottom
         ) {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = {  menuNavController.navigate(MenuScreens.HOME_SCREEN.route)}) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_menu_home_active),
                     contentDescription = "home",
@@ -63,7 +63,7 @@ fun BottomActionBar() {
 
             }
 
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = { menuNavController.navigate(MenuScreens.CALENDAR_SCREEN.route) }) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_menu_calendar_passive),
                     contentDescription = "calendar",
@@ -73,7 +73,7 @@ fun BottomActionBar() {
 
             Spacer(modifier = Modifier.size(52.dp))
 
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = { menuNavController.navigate(MenuScreens.LUMP_SCREEN.route) }) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_menu_lamp_passive),
                     contentDescription = "lamp"
@@ -81,7 +81,7 @@ fun BottomActionBar() {
             }
 
 
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = { menuNavController.navigate(MenuScreens.SETTINGS_SCREEN.route) }) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_menu_settings_passive),
                     contentDescription = "settings"

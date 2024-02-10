@@ -21,9 +21,9 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ButtonRegistration(text: String, modifier: Modifier = Modifier) {
+fun ButtonRegistration(text: String, modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
     OutlinedButton(
-        onClick = { },
+        onClick = { onClick.invoke() },
         shape = RoundedCornerShape(16.dp),
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xfff8f8f8)),
         border = BorderStroke(1.dp, Color(0xff89ccc5)),

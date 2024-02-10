@@ -1,47 +1,31 @@
 package ru.habit.tracker.ui.screens
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
-import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import ru.habit.tracker.ui.Screens
 import ru.habit.tracker.ui.btn.AuthorisationButton
 import ru.habit.tracker.ui.btn.ButtonRegistration
 import ru.habit.tracker.ui.text.ActionBarTitle
 import ru.habit.tracker.ui.text.LoginTextFields
 import ru.habit.tracker.ui.text.PasswordTextFields
 
-@Preview
 @Composable
-fun LoginPrev() {
-    LoginScreen()
-}
-
-@Composable
-fun LoginScreen() {
+fun LoginScreen(mainNavController: NavHostController) {
     val scrollState = rememberScrollState()
     Surface(
         modifier = Modifier
@@ -64,22 +48,27 @@ fun LoginScreen() {
             PasswordTextFields("Пароль")
 
             Spacer(modifier = Modifier.height(12.dp))
-            Text(text = "Забыли пароль?", Modifier.clickable { })
+            Text(text = "Забыли пароль?", Modifier.clickable {
+                mainNavController.navigate(Screens.RECOVERY.route)
+            })
 
             Spacer(modifier = Modifier.height(307.dp))
-            AuthorisationButton(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 44.dp),
+            AuthorisationButton(modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 44.dp),
                 btnText = "ВОЙТИ",
-                btnColor = btnPassiveColor
-            )
+                btnColor = btnPassiveColor,
+                onClick = {
+                    mainNavController.navigate(Screens.MAIN.route)
+                })
 
             Spacer(modifier = Modifier.height(12.dp))
             ButtonRegistration(
                 text = "РЕГИСТРАЦИЯ", modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 44.dp)
+                    .padding(horizontal = 44.dp), onClick = {
+                    mainNavController.navigate(Screens.REGISTRATION.route)
+                }
             )
         }
     }

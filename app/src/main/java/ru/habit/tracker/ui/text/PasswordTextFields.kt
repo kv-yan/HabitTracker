@@ -18,6 +18,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.habit.tracker.R
+import ru.habit.tracker.ui.screens.btnActiveColor
 import ru.habit.tracker.ui.theme.actionBarTitleColor
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,7 +43,7 @@ fun PasswordTextFields(
             IconButton(onClick = { isShowingPass = !isShowingPass }) {
                 Icon(
                     painter = painterResource(id = if (isShowingPass) R.drawable.ic_hide_pass else R.drawable.ic_show_pass),
-                    tint = actionBarTitleColor,
+                    tint = btnActiveColor,
                     contentDescription = null,
                 )
 

@@ -26,9 +26,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import ru.habit.tracker.R
 import ru.habit.tracker.ui.text.LoginTextFields
 import ru.habit.tracker.utils.AppSwitcher
@@ -43,7 +43,7 @@ import ru.habit.tracker.utils.WeekdaysRadioGroup
 import java.util.Locale
 
 @Composable
-fun AddNewHabitScreen() {
+fun AddNewHabitScreen(mainNavController: NavHostController) {
     val weekdaysItems = remember {
         mutableListOf<WeekdaysItem>(
             WeekdaysItem("Пн", mutableStateOf(true)),
@@ -181,7 +181,7 @@ fun AddNewHabitScreen() {
             Spacer(modifier = Modifier.height(18.dp))
 
             Text(
-                text = "В какое время::",
+                text = "В какое время:",
                 color = Color(0xff272727),
                 textAlign = TextAlign.Center,
                 style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Medium)
@@ -223,12 +223,6 @@ fun AddNewHabitScreen() {
 
         }
     }
-}
-
-@Preview
-@Composable
-fun AddHabitScreenPrev() {
-    AddNewHabitScreen()
 }
 
 @Composable

@@ -1,5 +1,6 @@
 package ru.habit.tracker.ui.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,22 +11,22 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import ru.habit.tracker.ui.Screens
 import ru.habit.tracker.ui.btn.AuthorisationButton
 import ru.habit.tracker.ui.text.ActionBarTitle
 import ru.habit.tracker.ui.text.PasswordTextFields
 import ru.habit.tracker.ui.theme.actionBarTitleColor
 
-@Preview
-@Composable
-fun ChangePasswordScreenPREV() {
-    ChangePasswordScreen()
-}
 
 @Composable
-fun ChangePasswordScreen() {
+fun ChangePasswordScreen(mainNavController: NavHostController) {
+    BackHandler {
+
+    }
+
     Surface(Modifier.padding(horizontal = 16.dp)) {
         Column {
             ActionBarTitle(titleText = "Придумайте пароль", modifier = Modifier.fillMaxWidth())
@@ -46,7 +47,9 @@ fun ChangePasswordScreen() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 40.dp)
-            )
+            ) {
+                mainNavController.navigate(Screens.MAIN.route)
+            }
 
         }
     }

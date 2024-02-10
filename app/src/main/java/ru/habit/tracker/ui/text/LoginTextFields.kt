@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.habit.tracker.R
+import ru.habit.tracker.ui.screens.btnActiveColor
 import ru.habit.tracker.ui.theme.actionBarTitleColor
 
 
@@ -38,6 +39,7 @@ fun LoginTextFields(
         if (text.text.isEmpty()) null else {
             Icon(painter = painterResource(id = R.drawable.ic_remove_field_text),
                 contentDescription = null,
+                tint = btnActiveColor,
                 modifier = Modifier.clickable {
                     text = text.copy(text = "")
                 })

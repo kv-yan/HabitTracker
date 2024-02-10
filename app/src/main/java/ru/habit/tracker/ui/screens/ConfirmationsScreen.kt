@@ -27,29 +27,26 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import ru.habit.tracker.ui.Screens
 import ru.habit.tracker.ui.btn.AuthorisationButton
 import ru.habit.tracker.ui.text.ActionBarTitleWithBoBackBtn
 import ru.habit.tracker.ui.text.InfoAboutCodeMessage
 import ru.habit.tracker.ui.theme.actionBarTitleColor
 import ru.habit.tracker.utils.CountdownTimerWithPause
 
-@Preview
-@Composable
-fun ConfirmationsScreenPREV() {
-    ConfirmationsScreen()
-}
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ConfirmationsScreen() {
+fun ConfirmationsScreen(mainNavController: NavHostController) {
     Surface(modifier = Modifier.fillMaxSize()) {
 
 
         Column() {
-            ActionBarTitleWithBoBackBtn(titleText = "Подтверждение")
+            ActionBarTitleWithBoBackBtn(titleText = "Подтверждение") {
+                mainNavController.popBackStack()
+            }
             Spacer(modifier = Modifier.height(127.dp))
 
             InfoAboutCodeMessage(Modifier.fillMaxWidth())
@@ -66,8 +63,14 @@ fun ConfirmationsScreen() {
             var text3 by remember { mutableStateOf("") }
             var text4 by remember { mutableStateOf("") }
 
+            if (text1.isNotEmpty() && text2.isNotEmpty() && text3.isNotEmpty() && text4.isNotEmpty()) {
+                mainNavController.navigate(Screens.MAIN.route)
+            }
 
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+
+            Row(
+                modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
+            ) {
                 TextField(
                     value = text1, textStyle = TextStyle.Default.copy(
                         fontSize = 24.sp, textAlign = TextAlign.Center
@@ -77,7 +80,6 @@ fun ConfirmationsScreen() {
 
                             focusRequester2.requestFocus()
                         }
-
                     }, colors = TextFieldDefaults.textFieldColors(
                         textColor = actionBarTitleColor,
                         containerColor = Color.Transparent,

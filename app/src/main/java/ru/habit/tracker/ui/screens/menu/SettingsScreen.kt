@@ -27,6 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.habit.tracker.R
+import ru.habit.tracker.ui.screens.btnActiveColor
 import ru.habit.tracker.ui.text.MenuTopBarTitle
 import ru.habit.tracker.ui.text.SettingItemText
 import ru.habit.tracker.utils.AppSwitcher
@@ -103,6 +104,7 @@ fun SettingsScreen() {
 @Preview
 @Composable
 fun SettingsPrev() {
+    SetActionBarColor(Color.White)
     SettingsScreen()
 }
 

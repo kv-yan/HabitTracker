@@ -13,24 +13,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import ru.habit.tracker.ui.Screens
 import ru.habit.tracker.ui.btn.AuthorisationButton
 import ru.habit.tracker.ui.text.ActionBarTitleWithBoBackBtn
 import ru.habit.tracker.ui.text.LoginTextFields
 
-@Preview
 @Composable
-fun RecoveryPREV() {
-    RecoveryScreen()
-}
-
-@Composable
-fun RecoveryScreen() {
+fun RecoveryScreen(mainNavController: NavHostController) {
     Surface(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = Modifier.fillMaxSize()
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -39,7 +33,9 @@ fun RecoveryScreen() {
                 .padding(horizontal = 16.dp)
         ) {
             Spacer(modifier = Modifier.height(12.dp))
-            ActionBarTitleWithBoBackBtn(titleText = "Восстановить пароль")
+            ActionBarTitleWithBoBackBtn(titleText = "Восстановить пароль") {
+                mainNavController.popBackStack()
+            }
 
             Spacer(modifier = Modifier.height(53.dp))
 
@@ -47,8 +43,7 @@ fun RecoveryScreen() {
                 text = "Укажите адрес почты или номер телефона, который вы использовали при регистрации. \nМы пришлем вам код для восстановления пароля.",
                 color = Color(0xff272727),
                 style = TextStyle(
-                    fontSize = 12.sp,
-                    lineHeight = 22.sp
+                    fontSize = 12.sp, lineHeight = 22.sp
                 ),
                 modifier = Modifier.fillMaxWidth()
             )
@@ -69,7 +64,9 @@ fun RecoveryScreen() {
                     .padding(horizontal = 16.dp),
                 btnText = "ПОЛУЧИТЬ КОД",
                 btnColor = btnPassiveColor
-            )
+            ) {
+                mainNavController.navigate(Screens.CONFIRMATION_SCREEN.route)
+            }
         }
     }
 }

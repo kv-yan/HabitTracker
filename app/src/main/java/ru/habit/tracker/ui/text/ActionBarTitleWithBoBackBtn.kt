@@ -1,7 +1,6 @@
 package ru.habit.tracker.ui.text
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
@@ -21,12 +20,11 @@ import ru.habit.tracker.R
 import ru.habit.tracker.ui.theme.actionBarTitleColor
 
 @Composable
-fun ActionBarTitleWithBoBackBtn(titleText: String) {
+fun ActionBarTitleWithBoBackBtn(titleText: String, popBackStack: () -> Unit = {}) {
     Box(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
     ) {
-        IconButton(onClick = { /*TODO*/ }) {
+        IconButton(onClick = { popBackStack.invoke() }) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_move_back),
                 contentDescription = "arrow",

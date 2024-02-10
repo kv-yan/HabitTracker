@@ -12,21 +12,17 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import ru.habit.tracker.ui.Screens
 import ru.habit.tracker.ui.btn.AuthorisationButton
 import ru.habit.tracker.ui.text.ActionBarTitleWithBoBackBtn
 import ru.habit.tracker.ui.text.LoginTextFields
 import ru.habit.tracker.ui.text.RegistrationHintTxt
 
-@Preview
-@Composable
-fun RegistrationPrev() {
-    RegistrationScreen()
-}
 
 @Composable
-fun RegistrationScreen() {
+fun RegistrationScreen(mainNavController: NavHostController) {
     val scrollState = rememberScrollState()
     Surface(
         modifier = Modifier
@@ -40,7 +36,9 @@ fun RegistrationScreen() {
                 .padding(horizontal = 16.dp)
         ) {
             Spacer(modifier = Modifier.height(12.dp))
-            ActionBarTitleWithBoBackBtn(titleText = "Регистрация")
+            ActionBarTitleWithBoBackBtn(titleText = "Регистрация", popBackStack = {
+                mainNavController.popBackStack()
+            })
 
             Spacer(modifier = Modifier.height(120.dp))
             LoginTextFields("Имя")
@@ -58,13 +56,14 @@ fun RegistrationScreen() {
 
             RegistrationHintTxt()
             Spacer(modifier = Modifier.height(16.dp))
-            AuthorisationButton(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+            AuthorisationButton(modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
                 btnText = "Регистрация",
-                btnColor = btnPassiveColor
-            )
+                btnColor = btnPassiveColor,
+                onClick = {
+                    mainNavController.navigate(Screens.NEW_PASSWORD_SCREEN.route)
+                })
         }
     }
 }
