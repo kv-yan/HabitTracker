@@ -1,7 +1,6 @@
 package ru.habit.tracker.ui.screens.menu
 
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,17 +18,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import ru.habit.tracker.R
 import ru.habit.tracker.ui.screens.btnActiveColor
 import ru.habit.tracker.ui.text.ActionBarTitle
 import ru.habit.tracker.utils.AnimatedCircularProgressIndicatorWithText
+import ru.habit.tracker.utils.Calendar
 import ru.habit.tracker.utils.HabitRadioGroup
 
 
@@ -54,14 +52,9 @@ fun CalendarScreen() {
 
             HabitRadioGroup()
             Spacer(modifier = Modifier.height(16.dp))
-
-            Image(
-                painter = painterResource(id = R.drawable.test_calendar),
-                contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(400.dp)
-            )
+            
+            Calendar()
+            Spacer(modifier = Modifier.height(24.dp))
             Text(
                 text = "Твой прогресс:",
                 color = Color(0xff272727),
@@ -73,14 +66,19 @@ fun CalendarScreen() {
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(end = 40.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(24.dp, alignment = Alignment.Start)
+            ) {
                 AnimatedCircularProgressIndicatorWithText(
                     currentValue = 8,
                     maxValue = 15,
                     progressBackgroundColor = Color.Black,
                     progressIndicatorColor = btnActiveColor,
                     completedColor = btnActiveColor,
-                    modifier = Modifier.fillMaxWidth(0.5f)
                 )
                 ProgressInfo(Modifier.width(170.dp))
             }
