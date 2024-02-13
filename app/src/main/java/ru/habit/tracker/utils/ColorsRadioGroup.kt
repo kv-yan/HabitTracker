@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -20,10 +21,11 @@ import ru.habit.tracker.ui.screens.btnActiveColor
 
 @Composable
 fun ColorsRadioGroup(options: MutableList<ColorsItem>) {
-    val onOptionSelectedListener: (ColorsItem) -> Unit = {
-        it.isSelected.value = !it.isSelected.value
+    val onOptionSelectedListener: (MutableList<ColorsItem>, ColorsItem) -> Unit = { list, item ->
+        list.forEach {
+            it.isSelected.value = it.color == item.color
+        }
     }
-
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -31,20 +33,18 @@ fun ColorsRadioGroup(options: MutableList<ColorsItem>) {
         modifier = Modifier.fillMaxWidth()
     ) {
         options.forEach { item ->
-            Surface(
-                modifier = Modifier
-                    .size(36.dp)
-                    .clickable {
-                        onOptionSelectedListener(item)
-                    }
-                    .clip(shape = RoundedCornerShape(10.dp)),
+            Surface(modifier = Modifier
+                .size(36.dp)
+                .clickable {
+                    onOptionSelectedListener(options, item)
+                }
+                .clip(shape = RoundedCornerShape(10.dp)),
                 shape = RoundedCornerShape(10.dp),
                 color = item.color,
                 border = BorderStroke(
                     width = 1.dp,
-                    color = if (item.isSelected.value) btnActiveColor else Color.Transparent
-                )
-            ) {
+                    color = if (item.isSelected.value) item.borderColor else Color.Transparent
+                )) {
 
             }
         }
@@ -59,6 +59,7 @@ private fun ColorsPrev() {
 
 
 data class ColorsItem(
+    val id: Int,
     var color: Color,
     var borderColor: Color,
     var isSelected: MutableState<Boolean>,

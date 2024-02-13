@@ -73,17 +73,23 @@ fun BottomActionBar(
                         ), contentDescription = "calendar"
                     )
                 }
+                val isInAddNewHabitScreen = DetectIsInCurrentNeededScreen(
+                    navController = menuNavController, rout = MenuScreens.ADD_NEW_HABIT.route
+                )
 
                 ExtendedFloatingActionButton(modifier = Modifier
                     .size(52.dp)
                     .offset(y = (-11).dp),
                     shape = CircleShape,
-                    containerColor = if (DetectIsInCurrentNeededScreen(
-                            navController = menuNavController,
-                            rout = MenuScreens.ADD_NEW_HABIT.route
-                        )
-                    ) actionBarTitleColor else btnActiveColor,
-                    onClick = { menuNavController.navigate(MenuScreens.ADD_NEW_HABIT.route) }) {
+                    containerColor = if (isInAddNewHabitScreen) actionBarTitleColor else btnActiveColor,
+                    onClick = {
+                        if (isInAddNewHabitScreen) {
+                            menuNavController.popBackStack()
+                        } else {
+                            menuNavController.navigate(MenuScreens.ADD_NEW_HABIT.route)
+                        }
+
+                    }) {
 
                     Icon(
                         imageVector = if (DetectIsInCurrentNeededScreen(
@@ -106,8 +112,7 @@ fun BottomActionBar(
                                     rout = MenuScreens.LUMP_SCREEN.route
                                 )
                             ) R.drawable.ic_menu_lamp_active else R.drawable.ic_menu_lamp_passive
-                        ),
-                        contentDescription = "lamp"
+                        ), contentDescription = "lamp"
                     )
                 }
 
@@ -120,8 +125,7 @@ fun BottomActionBar(
                                     rout = MenuScreens.SETTINGS_SCREEN.route
                                 )
                             ) R.drawable.ic_menu_settings_active else R.drawable.ic_menu_settings_passive
-                        ),
-                        contentDescription = "settings"
+                        ), contentDescription = "settings"
                     )
                 }
             }

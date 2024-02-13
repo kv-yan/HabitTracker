@@ -69,28 +69,33 @@ fun AddNewHabitScreen(mainNavController: NavHostController) {
     val colorsItem = remember {
         mutableListOf<ColorsItem>(
             ColorsItem(
+                id = 0,
                 color = Color(0xFF89CCC5),
-                borderColor = Color(0xFF89CCC5),
+                borderColor = Color.Black,
                 isSelected = mutableStateOf(true)
             ),
             ColorsItem(
+                id = 1,
                 color = Color(0xFFEFE2FF),
-                borderColor = Color(0xFFEFE2FF),
+                borderColor = Color.Black,
                 isSelected = mutableStateOf(false)
             ),
             ColorsItem(
+                id = 2,
                 color = Color(0xFFFFE3D7),
-                borderColor = Color(0xFFFFE3D7),
+                borderColor = Color.Black,
                 isSelected = mutableStateOf(false)
             ),
             ColorsItem(
+                id = 3,
                 color = Color(0xFFCFEBF7),
-                borderColor = Color(0xFFCFEBF7),
+                borderColor = Color.Black,
                 isSelected = mutableStateOf(false)
             ),
             ColorsItem(
+                id = 4,
                 color = Color(0xFFFEEEB7),
-                borderColor = Color(0xFFFEEEB7),
+                borderColor = Color.Black,
                 isSelected = mutableStateOf(false)
             ),
         )
@@ -100,10 +105,11 @@ fun AddNewHabitScreen(mainNavController: NavHostController) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(scrollState).padding(bottom = 40.dp),
+            .verticalScroll(scrollState)
+            .padding(bottom = 40.dp),
         color = Color(0xFFF8F8F8)
     ) {
-        Column(Modifier.padding(start = 16.dp , end= 16.dp , bottom =  45.dp)) {
+        Column(Modifier.padding(start = 16.dp, end = 16.dp, bottom = 45.dp)) {
             ActionBar()
             Spacer(modifier = Modifier.height(11.dp))
 

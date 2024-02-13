@@ -25,8 +25,10 @@ import ru.habit.tracker.R
 
 @Composable
 fun IconsRadioGroup(options: MutableList<IconsItem>) {
-    val onOptionSelectedListener: (IconsItem) -> Unit = {
-        it.isSelected.value = !it.isSelected.value
+    val onOptionSelectedListener: (MutableList<IconsItem>, IconsItem) -> Unit = { list, item ->
+        list.forEach {
+            it.isSelected.value = it.icon == item.icon
+        }
     }
 
 
@@ -47,7 +49,7 @@ fun IconsRadioGroup(options: MutableList<IconsItem>) {
                         ), shape = RoundedCornerShape(10.dp)
                     )
                     .clickable {
-                        onOptionSelectedListener(item)
+                        onOptionSelectedListener(options, item)
                     }) {
 
                 Image(
@@ -65,10 +67,10 @@ fun IconsRadioGroup(options: MutableList<IconsItem>) {
 fun IconsPrev() {
     val icons = remember {
         mutableListOf<IconsItem>(
-            IconsItem(R.drawable.ic_icon_1, mutableStateOf(true)),
-            IconsItem(R.drawable.ic_icon_2, mutableStateOf(false)),
-            IconsItem(R.drawable.ic_icon_3, mutableStateOf(false)),
-            IconsItem(R.drawable.ic_icon_4, mutableStateOf(false)),
+            IconsItem(icon = R.drawable.ic_icon_1, isSelected = mutableStateOf(true)),
+            IconsItem(icon = R.drawable.ic_icon_2, isSelected = mutableStateOf(false)),
+            IconsItem(icon = R.drawable.ic_icon_3, isSelected = mutableStateOf(false)),
+            IconsItem(icon = R.drawable.ic_icon_4, isSelected = mutableStateOf(false)),
         )
     }
 

@@ -40,7 +40,7 @@ fun HabitRadioGroup() {
         "Учиться новому",
     )
     var selectedOption by remember {
-        mutableStateOf("")
+        mutableStateOf("Утренний бег")
     }
     val onSelectionChange = { text: String ->
         selectedOption = text
@@ -49,7 +49,9 @@ fun HabitRadioGroup() {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
-        modifier = Modifier.horizontalScroll(scrollState)
+        modifier = Modifier
+            .horizontalScroll(scrollState)
+            .padding(start = 4.dp)
     ) {
         options.forEach { text ->
             Surface(shape = RoundedCornerShape(10.dp), shadowElevation = 2.dp) {

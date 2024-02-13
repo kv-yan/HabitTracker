@@ -2,29 +2,22 @@ package ru.habit.tracker.utils
 
 import CalendarProvider
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import ru.habit.tracker.DayItem
+import ru.habit.tracker.getDayItemSettings
+import ru.habit.tracker.ui.items.WeekdayItem
 
 @Preview
 @Composable
@@ -35,9 +28,7 @@ private fun CalendarPrev() {
 @Composable
 fun Calendar() {
     Column(
-        modifier = Modifier
-            .fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Surface(
             shape = RoundedCornerShape(28.dp),
@@ -92,33 +83,7 @@ private fun WeekdaysOfMounts() {
 }
 
 @Composable
-fun WeekdayItem(day: String) {
-    Box(
-        contentAlignment = Alignment.Center, modifier = Modifier.size(46.dp, 48.dp)
-    ) {
-        Text(
-            text = day, color = Color(0xff89ccc5), textAlign = TextAlign.Center, style = TextStyle(
-                fontSize = 13.sp
-            ), modifier = Modifier.wrapContentHeight(align = Alignment.CenterVertically)
-        )
-    }
-}
-
-@Composable
-fun DayItem(day: String) {
-    Box(
-        contentAlignment = Alignment.Center, modifier = Modifier.size(46.dp, 48.dp)
-    ) {
-        Text(
-            text = day, color = Color(0xff272727), textAlign = TextAlign.Center, style = TextStyle(
-                fontSize = 13.sp
-            ), modifier = Modifier.wrapContentHeight(align = Alignment.CenterVertically)
-        )
-    }
-}
-
-@Composable
-fun DaysInWeek() {
+private fun DaysInWeek() {
 
     val calendarProvider = remember {
         CalendarProvider(2024).monthsList[1]
@@ -128,7 +93,7 @@ fun DaysInWeek() {
         calendarProvider.weeks.forEach {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
                 it.forEach {
-                    DayItem(it)
+                    DayItem(getDayItemSettings(it,"14"))
                 }
             }
         }
