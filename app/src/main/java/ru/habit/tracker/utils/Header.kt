@@ -28,7 +28,10 @@ import ru.habit.tracker.R
 
 
 @Composable
-fun CalendarHeader(modifier: Modifier = Modifier) {
+fun CalendarHeader(
+    modifier: Modifier = Modifier, onNextMonth: () -> Unit,
+    onPreviousMonth: () -> Unit, currentMouth: String,
+) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = modifier
@@ -38,7 +41,7 @@ fun CalendarHeader(modifier: Modifier = Modifier) {
                 top = 16.dp, bottom = 12.dp
             )
     ) {
-        CalendarActionBar()
+        CalendarActionBar(onNextMonth = onPreviousMonth)
         Column(
             verticalArrangement = Arrangement.spacedBy(9.dp, Alignment.Top)
         ) {
@@ -52,7 +55,7 @@ fun CalendarHeader(modifier: Modifier = Modifier) {
                     )
             ) {
                 Text(
-                    text = "Январь 2024",
+                    text = currentMouth,
                     color = Color(0xff272727),
                     textAlign = TextAlign.Center,
                     style = TextStyle(
@@ -67,7 +70,7 @@ fun CalendarHeader(modifier: Modifier = Modifier) {
                 )
             }
         }
-        IconButton(onClick = { }) {
+        IconButton(onClick = { onNextMonth.invoke() }) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(
                     9.dp, Alignment.CenterVertically

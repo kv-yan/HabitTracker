@@ -25,6 +25,7 @@ import ru.habit.tracker.ui.theme.actionBarTitleColor
 @Composable
 fun PasswordTextFields(
     hintName: String,
+    text : MutableState<TextFieldValue> =mutableStateOf(TextFieldValue(""))
 ) {
     var isShowingPass by remember {
         mutableStateOf(false)
@@ -34,9 +35,8 @@ fun PasswordTextFields(
         if (isShowingPass) VisualTransformation.None else PasswordVisualTransformation()
 
 
-    var text by remember { mutableStateOf(TextFieldValue("")) }
     TextField(
-        value = text,
+        value = text.value,
         visualTransformation = passwordVisibility,
         textStyle = TextStyle.Default.copy(fontSize = 14.sp),
         trailingIcon = {
@@ -50,7 +50,7 @@ fun PasswordTextFields(
             }
         },
         onValueChange = {
-            text = it
+            text.value = it
         },
         placeholder = {
             Text(

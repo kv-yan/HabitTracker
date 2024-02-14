@@ -195,12 +195,7 @@ fun ConfirmationsScreen(mainNavController: NavHostController) {
                 CountdownTimerWithPause(timerNum, startFrom = 30)
                 AuthorisationButton(
                     btnText = btnText,
-                    isEnable = timerNum.value <= 0,
-                    btnColor = if (timerNum.value > 0) {
-                        btnPassiveColor
-                    } else {
-                        btnActiveColor
-                    },
+                    isActiveColor = timerNum.value > 0,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp)

@@ -14,6 +14,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,6 +28,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -42,10 +44,10 @@ import ru.habit.tracker.utils.IconsRadioGroup
 import ru.habit.tracker.utils.TimeSettingTool
 import ru.habit.tracker.utils.WeekdaysItem
 import ru.habit.tracker.utils.WeekdaysRadioGroup
-import java.util.Locale
 
 @Composable
-fun AddNewHabitScreen(mainNavController: NavHostController) {
+fun AddNewHabitScreen(menuNavHostController: NavHostController) {
+    val habitText = remember { mutableStateOf(TextFieldValue("")) }
     val scrollState = rememberScrollState()
     val weekdaysItems = remember {
         mutableListOf<WeekdaysItem>(
@@ -110,14 +112,10 @@ fun AddNewHabitScreen(mainNavController: NavHostController) {
         color = Color(0xFFF8F8F8)
     ) {
         Column(Modifier.padding(start = 16.dp, end = 16.dp, bottom = 45.dp)) {
-            ActionBar()
+            ActionBar(menuNavHostController =menuNavHostController )
             Spacer(modifier = Modifier.height(11.dp))
 
-            LoginTextFields(hintName = "привычкa".replaceFirstChar {
-                if (it.isLowerCase()) it.titlecase(
-                    Locale.ROOT
-                ) else it.toString()
-            })
+            LoginTextFields(hintName = "Привычкa", text = habitText)
             Spacer(modifier = Modifier.height(18.dp))
 
             Text(
@@ -240,7 +238,7 @@ fun AddNewHabitScreen(mainNavController: NavHostController) {
 }
 
 @Composable
-private fun ActionBar() {
+private fun ActionBar(menuNavHostController: NavHostController) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -256,11 +254,13 @@ private fun ActionBar() {
                 fontSize = 22.sp, fontWeight = FontWeight.Bold, letterSpacing = (-0.5).sp
             )
         )
-        Icon(
-            painter = painterResource(id = R.drawable.ic_remove_field_text),
-            contentDescription = "email_icons",
-            tint = Color(0xff272727)
-        )
+        IconButton(onClick = { menuNavHostController.popBackStack() }) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_remove_field_text),
+                contentDescription = "email_icons",
+                tint = Color(0xff272727)
+            )
+        }
     }
 
 }

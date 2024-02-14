@@ -52,7 +52,7 @@ fun CalendarScreen() {
 
             HabitRadioGroup()
             Spacer(modifier = Modifier.height(16.dp))
-            
+
             Calendar()
             Spacer(modifier = Modifier.height(24.dp))
             Text(
@@ -69,7 +69,7 @@ fun CalendarScreen() {
             Row(
                 Modifier
                     .fillMaxWidth()
-                    .padding(end = 40.dp),
+                    .padding(start = 20.dp, end = 10.dp, bottom = 40.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(24.dp, alignment = Alignment.Start)
             ) {
@@ -80,7 +80,11 @@ fun CalendarScreen() {
                     progressIndicatorColor = btnActiveColor,
                     completedColor = btnActiveColor,
                 )
-                ProgressInfo(Modifier.width(170.dp))
+                ProgressInfo(
+                    Modifier
+                        .width(170.dp)
+                        .padding(start = 18.dp)
+                )
             }
         }
     }

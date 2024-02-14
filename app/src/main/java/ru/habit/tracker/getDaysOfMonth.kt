@@ -31,18 +31,18 @@ class CalendarProvider(@RequiresApi(Build.VERSION_CODES.O) val year: Int) {
                     if (currentDate.monthValue == month) {
                         weekDays.add(currentDate.dayOfMonth.toString())
                     } else {
-                        weekDays.add("") // Пустые строки, если день не принадлежит текущему месяцу
+                        weekDays.add("") // Empty strings for days not belonging to the current month
                     }
                     currentDate = currentDate.plusDays(1)
                 } else {
-                    weekDays.add("") // Пустые строки для пропущенных дней недели
+                    weekDays.add("") // Empty strings for skipped days of the week
                 }
             }
 
             weeksList.add(weekDays)
         }
 
-        val monthName = currentDate.month.toString() // Получаем название месяца
+        val monthName = currentDate.month.name // Get the month name
         return CalendarMonth(monthName, weeksList)
     }
 

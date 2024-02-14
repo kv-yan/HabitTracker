@@ -33,19 +33,20 @@ fun PrevTextField() {
 @Composable
 fun LoginTextFields(
     hintName: String,
+    text: MutableState<TextFieldValue> =  mutableStateOf(TextFieldValue(""))
+
 ) {
-    var text by remember { mutableStateOf(TextFieldValue("")) }
-    TextField(value = text, textStyle = TextStyle.Default.copy(fontSize = 14.sp), trailingIcon = {
-        if (text.text.isEmpty()) null else {
+    TextField(value = text.value, textStyle = TextStyle.Default.copy(fontSize = 14.sp), trailingIcon = {
+        if (text.value.text.isEmpty()) null else {
             Icon(painter = painterResource(id = R.drawable.ic_remove_field_text),
                 contentDescription = null,
                 tint = btnActiveColor,
                 modifier = Modifier.clickable {
-                    text = text.copy(text = "")
+                    text.value = text.value.copy(text = "")
                 })
         }
     }, onValueChange = {
-        text = it
+        text.value = it
     }, placeholder = {
         Text(
             text = hintName,

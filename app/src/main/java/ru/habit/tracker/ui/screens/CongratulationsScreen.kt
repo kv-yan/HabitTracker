@@ -62,7 +62,7 @@ fun CongratulationsScreen(mainNavController: NavHostController) {
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp),
                     btnText = "войти".uppercase(),
-                    btnColor = btnActiveColor
+                    isActiveColor = true
                 ) {
                     mainNavController.navigate(Screens.MAIN.route)
                 }

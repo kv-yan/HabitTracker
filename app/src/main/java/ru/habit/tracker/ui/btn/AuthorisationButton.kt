@@ -14,22 +14,25 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import ru.habit.tracker.ui.screens.btnActiveColor
+import ru.habit.tracker.ui.screens.btnPassiveColor
 
 @Composable
 fun AuthorisationButton(
     modifier: Modifier = Modifier,
     btnText: String,
-    btnColor: Color,
-    isEnable: Boolean = true,
+    isActiveColor: Boolean,
     onClick: () -> Unit = {},
 ) {
     Button(
         onClick = { onClick.invoke() },
-        enabled = isEnable,
+        enabled = isActiveColor,
         shape = RoundedCornerShape(16.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = btnColor),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = if (isActiveColor) btnActiveColor else btnPassiveColor,
+            disabledContainerColor = btnPassiveColor
+        ),
         modifier = modifier.requiredHeight(height = 52.dp)
     ) {
         Row(

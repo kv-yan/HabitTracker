@@ -9,10 +9,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -23,6 +26,12 @@ import ru.habit.tracker.ui.text.LoginTextFields
 
 @Composable
 fun RecoveryScreen(mainNavController: NavHostController) {
+
+    val emailText = remember { mutableStateOf(TextFieldValue("")) }
+
+    var isActiveBtn = (emailText.value.text.length > 4)
+
+
     Surface(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -51,7 +60,7 @@ fun RecoveryScreen(mainNavController: NavHostController) {
 
 
             Spacer(modifier = Modifier.height(44.dp))
-            LoginTextFields("Электронная почта или телефон")
+            LoginTextFields("Электронная почта или телефон",emailText)
 
             Spacer(modifier = Modifier.height(230.dp))
 
@@ -61,7 +70,7 @@ fun RecoveryScreen(mainNavController: NavHostController) {
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
                 btnText = "ПОЛУЧИТЬ КОД",
-                btnColor = btnPassiveColor
+                isActiveColor = isActiveBtn
             ) {
                 mainNavController.navigate(Screens.CONFIRMATION_SCREEN.route)
             }

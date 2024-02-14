@@ -10,8 +10,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import ru.habit.tracker.Screens
@@ -24,6 +27,15 @@ import ru.habit.tracker.ui.text.RegistrationHintTxt
 @Composable
 fun RegistrationScreen(mainNavController: NavHostController) {
     val scrollState = rememberScrollState()
+
+    val nameText = remember { mutableStateOf(TextFieldValue("")) }
+    val surnameText = remember { mutableStateOf(TextFieldValue("")) }
+    val loginText = remember { mutableStateOf(TextFieldValue("")) }
+    val emailText = remember { mutableStateOf(TextFieldValue("")) }
+
+    var isActiveBtn =
+        (nameText.value.text.isNotEmpty() && surnameText.value.text.isNotEmpty() && loginText.value.text.isNotEmpty() && emailText.value.text.isNotEmpty())
+
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -41,16 +53,16 @@ fun RegistrationScreen(mainNavController: NavHostController) {
             })
 
             Spacer(modifier = Modifier.height(80.dp))
-            LoginTextFields("Имя")
+            LoginTextFields("Имя", text = nameText)
 
             Spacer(modifier = Modifier.height(12.dp))
-            LoginTextFields("Фамилия")
+            LoginTextFields("Фамилия", text = surnameText)
 
             Spacer(modifier = Modifier.height(12.dp))
-            LoginTextFields("Логин")
+            LoginTextFields("Логин", text = loginText)
 
             Spacer(modifier = Modifier.height(12.dp))
-            LoginTextFields("Электронная почта")
+            LoginTextFields("Электронная почта", text =emailText )
 
             Spacer(modifier = Modifier.height(130.dp))
 
@@ -60,7 +72,7 @@ fun RegistrationScreen(mainNavController: NavHostController) {
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
                 btnText = "Регистрация",
-                btnColor = btnPassiveColor,
+                isActiveColor = isActiveBtn,
                 onClick = {
                     mainNavController.navigate(Screens.NEW_PASSWORD_SCREEN.route)
                 })

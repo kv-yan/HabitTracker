@@ -13,9 +13,12 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import ru.habit.tracker.Screens
@@ -27,6 +30,10 @@ import ru.habit.tracker.ui.text.PasswordTextFields
 
 @Composable
 fun LoginScreen(mainNavController: NavHostController) {
+    var emailText = remember { mutableStateOf(TextFieldValue("")) }
+    var passwordText = remember { mutableStateOf(TextFieldValue("")) }
+
+    var isActiveBtn = (emailText.value.text.isNotEmpty() && passwordText.value.text.isNotEmpty())
     val scrollState = rememberScrollState()
     Surface(
         modifier = Modifier
@@ -45,10 +52,10 @@ fun LoginScreen(mainNavController: NavHostController) {
             ActionBarTitle("Вход")
 
             Spacer(modifier = Modifier.height(120.dp))
-            LoginTextFields("Электронная почта или логин")
+            LoginTextFields("Электронная почта или логин", text = emailText)
 
             Spacer(modifier = Modifier.height(12.dp))
-            PasswordTextFields("Пароль")
+            PasswordTextFields("Пароль", text = passwordText)
 
             Spacer(modifier = Modifier.height(12.dp))
             Text(text = "Забыли пароль?", Modifier.clickable {
@@ -60,7 +67,7 @@ fun LoginScreen(mainNavController: NavHostController) {
                 .fillMaxWidth()
                 .padding(horizontal = 44.dp),
                 btnText = "ВОЙТИ",
-                btnColor = btnPassiveColor,
+                isActiveBtn,
                 onClick = {
                     mainNavController.navigate(Screens.MAIN.route)
                 })

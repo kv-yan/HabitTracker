@@ -8,8 +8,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -22,16 +25,22 @@ import ru.habit.tracker.ui.theme.actionBarTitleColor
 
 @Composable
 fun ChangePasswordScreen(mainNavController: NavHostController) {
+    val passText1 = remember { mutableStateOf(TextFieldValue("")) }
+    val passText2 = remember { mutableStateOf(TextFieldValue("")) }
+
+
+    val isActiveBtn = (passText1.value.text.isNotEmpty() && passText2.value.text.isNotEmpty())
+
 
     Surface(Modifier.padding(horizontal = 16.dp)) {
         Column {
             ActionBarTitle(titleText = "Придумайте пароль", modifier = Modifier.fillMaxWidth())
             Spacer(modifier = Modifier.height(135.dp))
 
-            PasswordTextFields(hintName = "Пароль")
+            PasswordTextFields(hintName = "Пароль", text =passText1 )
             Spacer(modifier = Modifier.height(12.dp))
 
-            PasswordTextFields(hintName = "Повторите пароль")
+            PasswordTextFields(hintName = "Повторите пароль", text = passText2)
             Spacer(modifier = Modifier.height(12.dp))
 
             PasswordInfoText(modifier = Modifier.fillMaxWidth())
@@ -39,7 +48,7 @@ fun ChangePasswordScreen(mainNavController: NavHostController) {
 
             AuthorisationButton(
                 btnText = "Создать пароль".uppercase(),
-                btnColor = btnActiveColor,
+                isActiveColor = isActiveBtn,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 40.dp)
