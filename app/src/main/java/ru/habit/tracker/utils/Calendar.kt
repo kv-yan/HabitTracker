@@ -1,6 +1,7 @@
 package ru.habit.tracker.utils
 
-import CalendarProvider
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,20 +18,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import ru.habit.tracker.CalendarProvider
 import ru.habit.tracker.DayItem
 import ru.habit.tracker.getDayItemSettings
 import ru.habit.tracker.ui.items.WeekdayItem
+import java.time.LocalDate
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 private fun CalendarPrev() {
     Calendar()
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Calendar() {
@@ -110,6 +116,7 @@ private fun WeekdaysOfMounts() {
 
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun DaysInWeek(
@@ -119,9 +126,13 @@ private fun DaysInWeek(
     HorizontalPager(state = pageState) {
         Column(Modifier.fillMaxWidth()) {
             weeks.forEach {
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+                Row(
+                    Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = CenterVertically
+                ) {
                     it.forEach {
-                        DayItem(getDayItemSettings(it, "15"))
+                        DayItem(getDayItemSettings(it, LocalDate.now().dayOfMonth.toString()))
                     }
                 }
             }

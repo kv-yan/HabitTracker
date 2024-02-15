@@ -55,7 +55,7 @@ fun CalendarHeader(
                     )
             ) {
                 Text(
-                    text = currentMouth,
+                    text = currentMouth.capitalize(),
                     color = Color(0xff272727),
                     textAlign = TextAlign.Center,
                     style = TextStyle(

@@ -56,7 +56,7 @@ fun ConfirmationsScreen(mainNavController: NavHostController) {
             val focusRequester2 = remember { FocusRequester() }
             val focusRequester3 = remember { FocusRequester() }
             val focusRequester4 = remember { FocusRequester() }
-            val focusRequester5 = remember { FocusRequester() }
+
 
             var text1 by remember { mutableStateOf("") }
             var text2 by remember { mutableStateOf("") }
@@ -64,7 +64,7 @@ fun ConfirmationsScreen(mainNavController: NavHostController) {
             var text4 by remember { mutableStateOf("") }
 
             if (text1.isNotEmpty() && text2.isNotEmpty() && text3.isNotEmpty() && text4.isNotEmpty()) {
-                mainNavController.navigate(Screens.MAIN.route)
+                mainNavController.navigate(Screens.CONGRATULATIONS_SCREEN.route)
             }
 
 
@@ -195,11 +195,13 @@ fun ConfirmationsScreen(mainNavController: NavHostController) {
                 CountdownTimerWithPause(timerNum, startFrom = 30)
                 AuthorisationButton(
                     btnText = btnText,
-                    isActiveColor = timerNum.value > 0,
+                    isActiveColor = timerNum.value <= 0,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp)
-                )
+                ) {
+                    timerNum.value = 30
+                }
             }
         }
     }

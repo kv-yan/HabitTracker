@@ -5,7 +5,36 @@ import androidx.compose.ui.graphics.Color
 fun getDayItemSettings(day: String, currentDay: String): DayItemSettings {
     if (day.isNotEmpty()) {
         return when (day.toInt()) {
-            17 -> DayItemSettings(
+            2 -> DayItemSettings(
+                day = day,
+                isCurrentDay = currentDay == day,
+                isHaveGroup = true,
+                isGroupInStart = true,
+                isGroupInMiddle = false,
+                isGroupInEnd = false,
+                isHaveContainer = false,
+                isContainerInStart = false,
+                isContainerInMid = true,
+                isContainerInEnd = false,
+                Color(0xffE2958D)
+            )
+
+            3 -> DayItemSettings(
+                day = day,
+                isCurrentDay = currentDay == day,
+                isHaveGroup = true,
+                isGroupInStart = false,
+                isGroupInMiddle = false,
+                isGroupInEnd = true,
+                isHaveContainer = false,
+                isContainerInStart = false,
+                isContainerInMid = true,
+                isContainerInEnd = false,
+                Color(0xffE2958D)
+            )
+
+
+            4 -> DayItemSettings(
                 day = day,
                 isCurrentDay = currentDay == day,
                 isHaveGroup = true,
@@ -19,7 +48,7 @@ fun getDayItemSettings(day: String, currentDay: String): DayItemSettings {
             )
 
 
-            in 18..22 -> DayItemSettings(
+            in 5 until currentDay.toInt() -> DayItemSettings(
                 day = day,
                 isCurrentDay = currentDay == day,
                 isHaveGroup = true,
@@ -32,70 +61,47 @@ fun getDayItemSettings(day: String, currentDay: String): DayItemSettings {
                 isContainerInEnd = false
             )
 
-            23 -> DayItemSettings(
+            in 9 until 8 -> DayItemSettings(
                 day = day,
+                isCurrentDay = currentDay == day,
                 isHaveGroup = true,
                 isGroupInStart = false,
-                isGroupInMiddle = false,
-                isGroupInEnd = true,
-                isCurrentDay = currentDay == day,
-                isHaveContainer = true,
-                isContainerInStart = false,
-                isContainerInMid = false,
-                isContainerInEnd = false
-            )
-            27 -> DayItemSettings(
-                day = day,
-                isCurrentDay = currentDay == day,
-                isHaveGroup = true,
-                isGroupInStart = true,
-                isGroupInMiddle = false,
+                isGroupInMiddle = true,
                 isGroupInEnd = false,
                 isHaveContainer = true,
                 isContainerInStart = false,
-                isContainerInMid = false,
+                isContainerInMid = true,
                 isContainerInEnd = false,
-                groupColor = Color(0xffE2958D)
-            )
-            28 -> DayItemSettings(
-                day = day,
-                isCurrentDay = currentDay == day,
-                isHaveGroup = true,
-                isGroupInStart = false,
-                isGroupInMiddle = false,
-                isGroupInEnd = true,
-                isHaveContainer = true,
-                isContainerInStart = false,
-                isContainerInMid = false,
-                isContainerInEnd = false,
-                groupColor =Color(0xffE2958D)
+                Color(0xffE2958D)
             )
 
-            29 -> DayItemSettings(
+
+            currentDay.toInt() -> DayItemSettings(
                 day = day,
-                isCurrentDay = currentDay == day,
-                isHaveGroup = false,
+                isHaveGroup = true,
                 isGroupInStart = false,
                 isGroupInMiddle = false,
-                isGroupInEnd = false,
+                isGroupInEnd = true,
+                isCurrentDay = currentDay == day,
                 isHaveContainer = true,
                 isContainerInStart = false,
                 isContainerInMid = false,
                 isContainerInEnd = true
             )
 
-            in 17..29 -> DayItemSettings(
+            currentDay.toInt() - 1 -> DayItemSettings(
                 day = day,
-                isCurrentDay = currentDay == day,
-                isHaveGroup = false,
+                isHaveGroup = true,
                 isGroupInStart = false,
                 isGroupInMiddle = false,
                 isGroupInEnd = false,
+                isCurrentDay = currentDay == day,
                 isHaveContainer = true,
                 isContainerInStart = false,
                 isContainerInMid = false,
-                isContainerInEnd = false
+                isContainerInEnd = true
             )
+
 
             else -> DayItemSettings(
                 day = day,

@@ -25,23 +25,26 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ru.habit.tracker.ui.theme.actionBarTitleColor
 
 val calendarItemShapeStart = RoundedCornerShape(topStart = 100.dp, bottomStart = 100.dp)
 val calendarItemShapeEnd = RoundedCornerShape(topEnd = 100.dp, bottomEnd = 100.dp)
 val calendarItemShapeMid = RoundedCornerShape(0.dp)
+
+val groupColor = Color(0xFF89CCC5)
+val containerColor = Color(0xFFEFE2FF)
 
 @Composable
 fun DayItem(
     itemSettings: DayItemSettings,
 ) {
 
-
     Box(
         contentAlignment = Alignment.Center, /*modifier = Modifier.sizeIn(46.dp, 48.dp)*/
     ) {
 
         Surface( // TODO: for only container colors
-            color = if (itemSettings.isHaveContainer) Color(0xFFEFE2FF) else Color.Transparent,
+            color = if (itemSettings.isHaveContainer) containerColor else Color.Transparent,
             shape = if (itemSettings.isContainerInMid) calendarItemShapeMid
             else if (itemSettings.isContainerInStart) calendarItemShapeStart
             else if (itemSettings.isContainerInEnd) calendarItemShapeEnd
@@ -65,7 +68,7 @@ fun DayItem(
 
 
                 Surface(// TODO: this layer is only for current day
-                    color = if (itemSettings.isCurrentDay) Color(0xFF89CCC5) else Color.Transparent,
+                    color = if (itemSettings.isCurrentDay) itemSettings.groupColor  else Color.Transparent,
                     shape = CircleShape,
                     modifier = Modifier
                         .sizeIn(40.dp)
@@ -77,7 +80,7 @@ fun DayItem(
 
                         Text(
                             text = itemSettings.day,
-                            color = Color(0xff272727),
+                            color = actionBarTitleColor,
                             textAlign = TextAlign.Center,
                             style = TextStyle(
                                 fontSize = 13.sp

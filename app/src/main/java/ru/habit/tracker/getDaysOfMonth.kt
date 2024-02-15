@@ -1,8 +1,10 @@
+package ru.habit.tracker
+
 import android.os.Build
 import androidx.annotation.RequiresApi
 import java.time.DayOfWeek
 import java.time.LocalDate
-
+import java.util.Locale
 data class CalendarMonth(
     val name: String,
     val weeks: List<List<String>>,
@@ -20,7 +22,8 @@ class CalendarProvider(@RequiresApi(Build.VERSION_CODES.O) val year: Int) {
         val firstDayOfMonth = LocalDate.of(year, month, 1)
         val lastDayOfMonth = firstDayOfMonth.plusMonths(1).minusDays(1)
 
-        var currentDate = firstDayOfMonth
+        var currentDate = firstDayOfMonth.minusDays(1)
+
         val weeksList = mutableListOf<List<String>>()
 
         while (currentDate.isBefore(lastDayOfMonth) || currentDate.isEqual(lastDayOfMonth)) {
@@ -42,7 +45,8 @@ class CalendarProvider(@RequiresApi(Build.VERSION_CODES.O) val year: Int) {
             weeksList.add(weekDays)
         }
 
-        val monthName = currentDate.month.name // Get the month name
+        val monthName =
+            firstDayOfMonth.month.getDisplayName(java.time.format.TextStyle.FULL, Locale("ru"))
         return CalendarMonth(monthName, weeksList)
     }
 
@@ -59,4 +63,3 @@ fun main() {
 
     println(calendarProvider.monthsList)
 }
-
