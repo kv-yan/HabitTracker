@@ -64,7 +64,7 @@ fun ConfirmationsScreen(mainNavController: NavHostController) {
             var text4 by remember { mutableStateOf("") }
 
             if (text1.isNotEmpty() && text2.isNotEmpty() && text3.isNotEmpty() && text4.isNotEmpty()) {
-                mainNavController.navigate(Screens.CONGRATULATIONS_SCREEN.route)
+                mainNavController.navigate(Screens.NEW_PASSWORD_SCREEN.route)
             }
 
 

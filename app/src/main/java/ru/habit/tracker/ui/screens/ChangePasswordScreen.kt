@@ -29,7 +29,7 @@ fun ChangePasswordScreen(mainNavController: NavHostController) {
     val passText2 = remember { mutableStateOf(TextFieldValue("")) }
 
 
-    val isActiveBtn = (passText1.value.text.isNotEmpty() && passText2.value.text.isNotEmpty())
+    val isActiveBtn = (passText1.value.text == passText2.value.text)
 
 
     Surface(Modifier.padding(horizontal = 16.dp)) {
