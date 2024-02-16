@@ -2,10 +2,10 @@ package ru.habit.tracker
 
 import androidx.compose.ui.graphics.Color
 
-fun getDayItemSettings(day: String, currentDay: String): DayItemSettings {
-    if (day.isNotEmpty()) {
-        return when (day.toInt()) {
-            2 -> DayItemSettings(
+fun getDayItemSettings(day: String, currentDay: String, mount: Int): DayItemSettings {
+    if (day.isNotEmpty() && mount == 1) {
+        when (day.toInt()) {
+            2 -> return DayItemSettings(
                 day = day,
                 isCurrentDay = currentDay == day,
                 isHaveGroup = true,
@@ -19,7 +19,7 @@ fun getDayItemSettings(day: String, currentDay: String): DayItemSettings {
                 Color(0xffE2958D)
             )
 
-            3 -> DayItemSettings(
+            3 -> return DayItemSettings(
                 day = day,
                 isCurrentDay = currentDay == day,
                 isHaveGroup = true,
@@ -34,7 +34,7 @@ fun getDayItemSettings(day: String, currentDay: String): DayItemSettings {
             )
 
 
-            4 -> DayItemSettings(
+            4 -> return DayItemSettings(
                 day = day,
                 isCurrentDay = currentDay == day,
                 isHaveGroup = true,
@@ -48,7 +48,7 @@ fun getDayItemSettings(day: String, currentDay: String): DayItemSettings {
             )
 
 
-            in 5 until currentDay.toInt() -> DayItemSettings(
+            in 5 until currentDay.toInt() -> return DayItemSettings(
                 day = day,
                 isCurrentDay = currentDay == day,
                 isHaveGroup = true,
@@ -61,7 +61,7 @@ fun getDayItemSettings(day: String, currentDay: String): DayItemSettings {
                 isContainerInEnd = false
             )
 
-            in 9 until 8 -> DayItemSettings(
+            in 9 until 8 -> return DayItemSettings(
                 day = day,
                 isCurrentDay = currentDay == day,
                 isHaveGroup = true,
@@ -76,7 +76,7 @@ fun getDayItemSettings(day: String, currentDay: String): DayItemSettings {
             )
 
 
-            currentDay.toInt() -> DayItemSettings(
+            currentDay.toInt() -> return DayItemSettings(
                 day = day,
                 isHaveGroup = true,
                 isGroupInStart = false,
@@ -89,7 +89,7 @@ fun getDayItemSettings(day: String, currentDay: String): DayItemSettings {
                 isContainerInEnd = true
             )
 
-            currentDay.toInt() - 1 -> DayItemSettings(
+            currentDay.toInt() - 1 -> return DayItemSettings(
                 day = day,
                 isHaveGroup = true,
                 isGroupInStart = false,
@@ -103,7 +103,7 @@ fun getDayItemSettings(day: String, currentDay: String): DayItemSettings {
             )
 
 
-            else -> DayItemSettings(
+            else -> return DayItemSettings(
                 day = day,
                 isCurrentDay = currentDay == day,
                 isHaveGroup = false,
@@ -120,7 +120,7 @@ fun getDayItemSettings(day: String, currentDay: String): DayItemSettings {
     } else {
         return DayItemSettings(
             day = day,
-            isCurrentDay = currentDay == day,
+            isCurrentDay = false,
             isHaveGroup = false,
             isGroupInStart = false,
             isGroupInMiddle = false,

@@ -1,6 +1,8 @@
 package ru.habit.tracker.ui.screens.menu
 
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -37,6 +39,7 @@ fun CalendarPrev() {
     CalendarScreen()
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun CalendarScreen() {
     val scrollState = rememberScrollState()
@@ -48,13 +51,13 @@ fun CalendarScreen() {
     ) {
         Column {
             ActionBarTitle(titleText = "Календарь")
-            Spacer(modifier = Modifier.height(22.dp))
+            Spacer(modifier = Modifier.height(12.dp))
 
             HabitRadioGroup()
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(12.dp))
 
             Calendar()
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(12.dp))
             Text(
                 text = "Твой прогресс:",
                 color = Color(0xff272727),
@@ -64,7 +67,7 @@ fun CalendarScreen() {
                 ),
             )
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(12.dp))
 
             Row(
                 Modifier

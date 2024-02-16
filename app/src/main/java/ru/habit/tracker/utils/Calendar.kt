@@ -132,7 +132,7 @@ private fun DaysInWeek(
                     verticalAlignment = CenterVertically
                 ) {
                     it.forEach {
-                        DayItem(getDayItemSettings(it, LocalDate.now().dayOfMonth.toString()))
+                        DayItem(getDayItemSettings(it, LocalDate.now().dayOfMonth.toString(), pageState.currentPage))
                     }
                 }
             }
